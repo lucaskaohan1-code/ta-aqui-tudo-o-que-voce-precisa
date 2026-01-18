@@ -1,0 +1,7 @@
+[
+  { "nome": "Air Fryer Philco", "categoria": "Cozinha", "imagem": "https://via.placeholder.com/250", "link": "#" },
+  { "nome": "Tênis Nike Revolution", "categoria": "Esportes", "imagem": "https://via.placeholder.com/250", "link": "#" },
+  { "nome": "Cadeira Gamer Azul", "categoria": "Casa", "imagem": "https://via.placeholder.com/250", "link": "#" },
+  { "nome": "Kit Shampoo e Condicionador", "categoria": "Farmácia", "imagem": "https://via.placeholder.com/250", "link": "#" },
+  { "nome": "Livro Mindset", "categoria": "Livros", "imagem": "https://via.placeholder.com/250", "link": "#" }
+]
