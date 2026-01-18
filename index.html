@@ -5,39 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tá aqui! tudo o que você precisa</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #fafafa;
       color: #333;
     }
+
+    /* HEADER */
     header {
       background-color: #ffc107;
       color: white;
       text-align: center;
-      padding: 20px 10px;
+      padding: 30px 20px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    nav {
-      margin-top: 10px;
+    header img {
+      width: 150px;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 15px;
     }
-    nav a {
+    .search-bar {
+      margin: 15px auto;
+      max-width: 500px;
+      display: flex;
+    }
+    .search-bar input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px 0 0 8px;
+      font-size: 16px;
+    }
+    .search-bar button {
+      background: #ff9800;
+      border: none;
       color: white;
-      margin: 0 10px;
-      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
       font-weight: bold;
     }
-    nav a:hover {
-      text-decoration: underline;
+    .search-bar button:hover {
+      background: #e68900;
     }
+
+    /* WHATSAPP INVITE */
+    .whatsapp-invite {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .whatsapp-invite a {
+      background: #25D366;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .whatsapp-invite a:hover {
+      background: #1ebe57;
+    }
+
+    /* SECTION BASE */
     main {
       padding: 20px;
       max-width: 1100px;
       margin: 0 auto;
     }
+    section {
+      margin-bottom: 40px;
+    }
+    section h2 {
+      border-left: 5px solid #ffc107;
+      padding-left: 10px;
+    }
+
+    /* PRODUTOS */
     .produtos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -51,20 +98,13 @@
       padding: 15px;
       transition: all 0.2s ease-in-out;
     }
-    .produto:hover {
-      transform: scale(1.02);
-    }
+    .produto:hover { transform: scale(1.02); }
     .produto img {
       width: 100%;
       border-radius: 8px;
     }
-    .produto h3 {
-      margin: 10px 0 5px;
-    }
-    .produto p {
-      color: #666;
-      font-size: 14px;
-    }
+    .produto h3 { margin: 10px 0 5px; }
+    .produto p { color: #666; font-size: 14px; }
     .produto a {
       display: inline-block;
       margin-top: 8px;
@@ -72,9 +112,30 @@
       text-decoration: none;
       font-weight: bold;
     }
-    .produto a:hover {
-      text-decoration: underline;
+    .produto a:hover { text-decoration: underline; }
+
+    /* CATEGORIAS */
+    .categorias {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
     }
+    .categoria {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+      padding: 15px 25px;
+      font-weight: bold;
+      color: #ff9800;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .categoria:hover {
+      background: #ff9800;
+      color: white;
+    }
+
     footer {
       text-align: center;
       padding: 15px;
@@ -86,32 +147,57 @@
 </head>
 <body>
   <header>
-    <h1>tá aqui! tudo o que você precisa</h1>
-    <nav>
-      <a href="#">Mais vendidos</a>
-      <a href="#">Ofertas</a>
-      <a href="#">Catálogo</a>
-      <a href="#">WhatsApp</a>
-    </nav>
+    <img src="https://via.placeholder.com/150x80?text=LOGO" alt="Logo tá aqui!">
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar produtos..." />
+      <button>Pesquisar</button>
+    </div>
+    <div class="whatsapp-invite">
+      <a href="https://chat.whatsapp.com/" target="_blank">💬 Participar do grupo de promoções diárias</a>
+    </div>
   </header>
 
   <main>
-    <h2>🔥 Ofertas da Semana</h2>
-    <div class="produtos">
-      <div class="produto">
-        <img src="https://via.placeholder.com/300x200" alt="Produto 1">
-        <h3>Produto em Promoção</h3>
-        <p>Desconto de até 30% — válido por 7 dias!</p>
-        <a href="#">Ver na loja oficial</a>
+    <section id="ofertas">
+      <h2>🔥 Melhores Ofertas da Semana</h2>
+      <div class="produtos">
+        <div class="produto">
+          <img src="https://via.placeholder.com/300x200" alt="Produto 1">
+          <h3>Produto em Promoção</h3>
+          <p>Desconto de até 30% — válido por 7 dias!</p>
+          <a href="#">Ver na loja oficial</a>
+        </div>
+        <div class="produto">
+          <img src="https://via.placeholder.com/300x200" alt="Produto 2">
+          <h3>Produto Destaque</h3>
+          <p>Oferta relâmpago — não perca!</p>
+          <a href="#">Ver na loja oficial</a>
+        </div>
       </div>
+    </section>
 
-      <div class="produto">
-        <img src="https://via.placeholder.com/300x200" alt="Produto 2">
-        <h3>Produto Destaque</h3>
-        <p>Oferta relâmpago — não perca!</p>
-        <a href="#">Ver na loja oficial</a>
+    <section id="essenciais">
+      <h2>💎 O que não pode faltar</h2>
+      <div class="produtos">
+        <div class="produto">
+          <img src="https://via.placeholder.com/300x200" alt="Essencial 1">
+          <h3>Essencial do Dia</h3>
+          <p>Indispensável para seu dia a dia.</p>
+          <a href="#">Ver na loja oficial</a>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <section id="categorias">
+      <h2>🏷️ Categorias</h2>
+      <div class="categorias">
+        <div class="categoria">Casa</div>
+        <div class="categoria">Cozinha</div>
+        <div class="categoria">Esportes</div>
+        <div class="categoria">Farmácia</div>
+        <div class="categoria">Livros</div>
+      </div>
+    </section>
   </main>
 
   <footer>
