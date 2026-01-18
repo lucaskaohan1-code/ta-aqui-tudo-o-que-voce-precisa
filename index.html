@@ -38,4 +38,284 @@
       display: flex;
       border: 2px solid #0039ff;
       border-radius: 8px;
-      overflow:
+      overflow: hidden;
+      background: white;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .search-bar button {
+      background: #0039ff;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s ease;
+    }
+
+    .search-bar button:hover {
+      background: #0020aa;
+    }
+
+    /* === WHATSAPP === */
+    .whatsapp-invite {
+      text-align: center;
+      margin: 25px 0;
+    }
+
+    .whatsapp-invite a {
+      background: #25D366;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: background 0.2s;
+    }
+
+    .whatsapp-invite a:hover {
+      background: #1ebe57;
+    }
+
+    /* === CONTEÚDO === */
+    main {
+      padding: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: 50px;
+    }
+
+    section h2 {
+      border-left: 6px solid #0039ff;
+      padding-left: 10px;
+      color: #0039ff;
+      text-transform: uppercase;
+    }
+
+    /* === PRODUTOS === */
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 25px;
+    }
+
+    .produto {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+    }
+
+    .produto:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .produto img {
+      max-width: 100%;
+      height: 180px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .produto h3 {
+      font-size: 16px;
+      color: #000;
+      margin: 10px 0 5px;
+      min-height: 45px;
+    }
+
+    .produto p {
+      color: #444;
+      font-size: 14px;
+      margin: 3px 0;
+    }
+
+    .produto .preco {
+      font-size: 18px;
+      font-weight: bold;
+      color: #0039ff;
+      margin-top: 5px;
+    }
+
+    .produto .preco-antigo {
+      text-decoration: line-through;
+      color: #777;
+      font-size: 13px;
+    }
+
+    .produto .desconto {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #0039ff;
+      color: #fff;
+      font-weight: bold;
+      font-size: 13px;
+      padding: 4px 8px;
+      border-radius: 5px;
+    }
+
+    .produto .frete {
+      display: inline-block;
+      background: #00c853;
+      color: white;
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 10px;
+      margin-top: 5px;
+    }
+
+    .produto a {
+      display: inline-block;
+      background: #faff06;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 10px;
+      padding: 8px 15px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .produto a:hover {
+      background: #0039ff;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #000;
+      color: #faff06;
+      margin-top: 50px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://via.placeholder.com/200x100?text=LOGO" alt="Logo tá aqui! tudo o que você precisa">
+
+    <div class="search-bar">
+      <input id="campo-busca" type="text" placeholder="🔍 Buscar produtos..." oninput="buscar()" />
+    </div>
+
+    <div class="whatsapp-invite">
+      <a href="https://chat.whatsapp.com/" target="_blank">💬 Participar do grupo de promoções diárias</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="ofertas">
+      <h2>🔥 Ofertas do Dia</h2>
+      <div id="resultados" class="produtos"></div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 tá aqui! tudo o que você precisa — Todos os direitos reservados.
+  </footer>
+
+  <script>
+  // --- Função de similaridade ---
+  function similaridade(a, b) {
+    if (a.length === 0) return b.length;
+    if (b.length === 0) return a.length;
+
+    const matriz = [];
+    for (let i = 0; i <= b.length; i++) matriz[i] = [i];
+    for (let j = 0; j <= a.length; j++) matriz[0][j] = j;
+
+    for (let i = 1; i <= b.length; i++) {
+      for (let j = 1; j <= a.length; j++) {
+        const custo = b[i - 1] === a[j - 1] ? 0 : 1;
+        matriz[i][j] = Math.min(
+          matriz[i - 1][j] + 1,
+          matriz[i][j - 1] + 1,
+          matriz[i - 1][j - 1] + custo
+        );
+      }
+    }
+
+    const distancia = matriz[b.length][a.length];
+    const maxLen = Math.max(a.length, b.length);
+    return 1 - distancia / maxLen;
+  }
+
+  // --- Carregar produtos ---
+  async function carregarProdutos() {
+    const resp = await fetch('produtos.json');
+    return await resp.json();
+  }
+
+  // --- Buscar produtos ---
+  async function buscar() {
+    const termo = document.querySelector('#campo-busca').value.toLowerCase();
+    const container = document.querySelector('#resultados');
+    container.innerHTML = '';
+
+    const produtos = await carregarProdutos();
+
+    let resultados = produtos;
+    if (termo.trim() !== '') {
+      resultados = produtos
+        .map(p => ({ ...p, score: similaridade(termo, p.nome.toLowerCase()) }))
+        .filter(p => p.score > 0.3)
+        .sort((a, b) => b.score - a.score);
+    }
+
+    if (resultados.length === 0) {
+      container.innerHTML = `<p>Nenhum produto encontrado.</p>`;
+      return;
+    }
+
+    container.innerHTML = resultados
+      .map(p => `
+        <div class="produto">
+          ${p.desconto ? `<span class="desconto">${p.desconto}</span>` : ''}
+          <img src="${p.imagem}" alt="${p.nome}">
+          <h3>${p.nome}</h3>
+          ${p.precoAntigo ? `<p class="preco-antigo">${p.precoAntigo}</p>` : ''}
+          <p class="preco">${p.preco}</p>
+          ${p.frete ? `<span class="frete">${p.frete}</span>` : ''}
+          <a href="${p.link}" target="_blank">Comprar</a>
+        </div>
+      `)
+      .join('');
+  }
+
+  // --- Inicializa com todos os produtos ---
+  carregarProdutos().then(produtos => {
+    const container = document.querySelector('#resultados');
+    container.innerHTML = produtos.map(p => `
+      <div class="produto">
+        ${p.desconto ? `<span class="desconto">${p.desconto}</span>` : ''}
+        <img src="${p.imagem}" alt="${p.nome}">
+        <h3>${p.nome}</h3>
+        ${p.precoAntigo ? `<p class="preco-antigo">${p.precoAntigo}</p>` : ''}
+        <p class="preco">${p.preco}</p>
+        ${p.frete ? `<span class="frete">${p.frete}</span>` : ''}
+        <a href="${p.link}" target="_blank">Comprar</a>
+      </div>
+    `).join('');
+  });
+  </script>
+</body>
+</html>
